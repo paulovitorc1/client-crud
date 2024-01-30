@@ -23,11 +23,16 @@ public class ClientService {
 		Optional<Client> client = clientRepository.findById(id);
 		return client;
 	}
-	
-    @Transactional(readOnly = true)
-    public List<Client> findAll(Pageable pageable) {
-    	Page<Client> clients = clientRepository.findAll(pageable);
-        return clients.toList();
-    }
+
+	@Transactional(readOnly = true)
+	public List<Client> findAll(Pageable pageable) {
+		Page<Client> clients = clientRepository.findAll(pageable);
+		return clients.toList();
+	}
+
+	@Transactional
+	public Client insert(Client client) {
+		return clientRepository.save(client);
+	}
 
 }
