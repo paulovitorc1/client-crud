@@ -14,8 +14,6 @@ import com.softwarehouse.entities.Client;
 import com.softwarehouse.repositories.ClientRepository;
 import com.softwarehouse.services.exceptions.ResourceNotFoundException;
 
-import jakarta.persistence.EntityNotFoundException;
-
 @Service
 public class ClientService {
 
@@ -41,20 +39,17 @@ public class ClientService {
 	}
 
 	@Transactional
-	public Optional<Object> update(Long id, Client updatedClient) {
-		try {
-
-			return clientRepository.findById(id).map(client -> {
-				client.setName(updatedClient.getName());
-				client.setCpf(updatedClient.getCpf());
-				client.setIncome(updatedClient.getIncome());
-				client.setBirthDate(updatedClient.getBirthDate());
-				client.setChildren(updatedClient.getChildren());
-				return clientRepository.save(client);
-			});
-		} catch (EntityNotFoundException e) {
+	public Optional<Client> update(Long id, Client updatedClient) {
+		return Optional.ofNullable(clientRepository.findById(id).map(client -> {
+			client.setName(updatedClient.getName());
+			client.setCpf(updatedClient.getCpf());
+			client.setIncome(updatedClient.getIncome());
+			client.setBirthDate(updatedClient.getBirthDate());
+			client.setChildren(updatedClient.getChildren());
+			return clientRepository.save(client);
+		}).orElseThrow(() -> {
 			throw new ResourceNotFoundException("Recurso não encontrado");
-		}
+		}));
 	}
 
 	@Transactional(propagation = Propagation.SUPPORTS)

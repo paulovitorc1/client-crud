@@ -43,7 +43,7 @@ public class ClientController {
 
 	@PutMapping(value = "/{id}")
 	public Optional<Object> update(@PathVariable Long id, @RequestBody Client updatedClient) {
-		Optional<Object> updated = clientService.update(id, updatedClient);
+		Optional<Object> updated = Optional.ofNullable(clientService.update(id, updatedClient));
 		return updated;
 	}
 
