@@ -42,3 +42,9 @@
 ![image](https://github.com/paulovitorc1/client-crud/assets/96089877/8d1c0d42-c3ba-4924-a973-31a2b3bd4e20)
 
 
+ - Delete by id exception:
+
+![image](https://github.com/paulovitorc1/client-crud/assets/96089877/ed0b250c-13ce-41e9-962e-d7419e913e13)
+
+
+
