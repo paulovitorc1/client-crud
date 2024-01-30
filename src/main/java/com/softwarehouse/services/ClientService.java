@@ -7,11 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.softwarehouse.entities.Client;
 import com.softwarehouse.repositories.ClientRepository;
 import com.softwarehouse.services.exceptions.ResourceNotFoundException;
+
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class ClientService {
@@ -21,8 +24,8 @@ public class ClientService {
 
 	@Transactional(readOnly = true)
 	public Optional<Client> findById(Long id) {
-		Optional<Client> client = Optional.ofNullable(clientRepository.findById(id).orElseThrow(
-				() -> new ResourceNotFoundException("Recurso não encontrado.")));
+		Optional<Client> client = Optional.ofNullable(clientRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Recurso não encontrado.")));
 		return client;
 	}
 
@@ -39,19 +42,28 @@ public class ClientService {
 
 	@Transactional
 	public Optional<Object> update(Long id, Client updatedClient) {
-		return clientRepository.findById(id).map(client -> {
-			client.setName(updatedClient.getName());
-			client.setCpf(updatedClient.getCpf());
-			client.setIncome(updatedClient.getIncome());
-			client.setBirthDate(updatedClient.getBirthDate());
-			client.setChildren(updatedClient.getChildren());
-			return clientRepository.save(client);
-		});
+		try {
+
+			return clientRepository.findById(id).map(client -> {
+				client.setName(updatedClient.getName());
+				client.setCpf(updatedClient.getCpf());
+				client.setIncome(updatedClient.getIncome());
+				client.setBirthDate(updatedClient.getBirthDate());
+				client.setChildren(updatedClient.getChildren());
+				return clientRepository.save(client);
+			});
+		} catch (EntityNotFoundException e) {
+			throw new ResourceNotFoundException("Recurso não encontrado");
+		}
 	}
 
-	@Transactional
+	@Transactional(propagation = Propagation.SUPPORTS)
 	public void delete(Long id) {
-		clientRepository.deleteById(id);
+		if (!clientRepository.existsById(id)) {
+			throw new ResourceNotFoundException("Recurso não encontrado");
+		} else {
+			clientRepository.deleteById(id);
+		}
 	}
 
 }
