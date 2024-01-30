@@ -4,9 +4,7 @@
 
  - Paginated resource search:
    
-![image](https://github.com/paulovitorc1/client-crud/assets/96089877/ddff776e-901f-4a99-b195-8a0e6e95035d)
-
-![image](https://github.com/paulovitorc1/client-crud/assets/96089877/096bda40-8852-4a46-aef6-0d8d4f3cf85d)
+![image](https://github.com/paulovitorc1/client-crud/assets/96089877/ad90c3a6-5cf0-40d3-b716-df2d63194541)
 
  
  - Find resource by id
