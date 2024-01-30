@@ -51,3 +51,9 @@
 
 ![image](https://github.com/paulovitorc1/client-crud/assets/96089877/d6dd52c4-b0de-4f42-9ead-835336fb9f59)
 
+
+ - Update and insert exception to invalid data:
+
+![image](https://github.com/paulovitorc1/client-crud/assets/96089877/a3df41d6-d4b7-4600-9548-8c6b7b833dc1)
+
+
