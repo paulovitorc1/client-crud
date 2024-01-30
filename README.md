@@ -23,6 +23,11 @@
  
  - Update resource
 
+![image](https://github.com/paulovitorc1/client-crud/assets/96089877/2d6f6b7b-d3b3-48b2-b73d-58c7e7e2e2a7)
+
+![image](https://github.com/paulovitorc1/client-crud/assets/96089877/4f9e97ed-00ab-4ced-be83-d579a45ff1b6)
+
+![image](https://github.com/paulovitorc1/client-crud/assets/96089877/93f3573d-1584-46c3-bd5d-24dad7eae1f0)
 
 
  - Delete resource
