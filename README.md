@@ -47,4 +47,7 @@
 ![image](https://github.com/paulovitorc1/client-crud/assets/96089877/ed0b250c-13ce-41e9-962e-d7419e913e13)
 
 
+ - Update by Id exception:
+
+![image](https://github.com/paulovitorc1/client-crud/assets/96089877/d6dd52c4-b0de-4f42-9ead-835336fb9f59)
 
