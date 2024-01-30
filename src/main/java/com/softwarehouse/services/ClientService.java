@@ -36,9 +36,15 @@ public class ClientService {
 	}
 
 	@Transactional
-	public Client update(Long id, Client client) {
-		Client clientToUpdate = clientRepository.getReferenceById(id);
-		return clientRepository.save(clientToUpdate);
+	public Optional<Object> update(Long id, Client updatedClient) {
+		return clientRepository.findById(id).map(client -> {
+			client.setName(updatedClient.getName());
+			client.setCpf(updatedClient.getCpf());
+			client.setIncome(updatedClient.getIncome());
+			client.setBirthDate(updatedClient.getBirthDate());
+			client.setChildren(updatedClient.getChildren());
+			return clientRepository.save(client);
+		});
 	}
 
 	@Transactional
