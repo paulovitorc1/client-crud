@@ -7,6 +7,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
 
 @Entity
 @Table(name = "tb_client")
@@ -15,11 +17,18 @@ public class Client {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
+	@NotNull(message = "Informe o nome.")
 	private String name;
+
 	private String cpf;
+
 	private Double income;
-	private LocalDate birthDate;
+
 	private Integer children;
+
+	@PastOrPresent(message = "Data de aniversário deve ser maior ou igual data atual.")
+	private LocalDate birthDate;
 
 	public Client() {
 	}

@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.softwarehouse.entities.Client;
 import com.softwarehouse.services.ClientService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping(value = "/clients")
 public class ClientController {
@@ -37,12 +39,12 @@ public class ClientController {
 	}
 
 	@PostMapping
-	public Client insert(@RequestBody Client client) {
+	public Client insert(@Valid @RequestBody Client client) {
 		return clientService.insert(client);
 	}
 
 	@PutMapping(value = "/{id}")
-	public Optional<Object> update(@PathVariable Long id, @RequestBody Client updatedClient) {
+	public Optional<Object> update(@PathVariable Long id, @Valid @RequestBody Client updatedClient) {
 		Optional<Object> updated = Optional.ofNullable(clientService.update(id, updatedClient));
 		return updated;
 	}
