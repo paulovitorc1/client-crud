@@ -35,4 +35,15 @@ public class ClientService {
 		return clientRepository.save(client);
 	}
 
+	@Transactional
+	public Client update(Long id, Client client) {
+		Client clientToUpdate = clientRepository.getReferenceById(id);
+		return clientRepository.save(clientToUpdate);
+	}
+
+	@Transactional
+	public void delete(Long id) {
+		clientRepository.deleteById(id);
+	}
+
 }

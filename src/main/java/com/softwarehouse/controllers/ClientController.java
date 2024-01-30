@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,6 +38,11 @@ public class ClientController {
 	@PostMapping
 	public Client insert(@RequestBody Client client) {
 		return clientService.insert(client);
+	}
+
+	@DeleteMapping(value = "/{id}")
+	public void delete(@PathVariable Long id) {
+		clientService.delete(id);
 	}
 
 }
