@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.softwarehouse.entities.Client;
 import com.softwarehouse.repositories.ClientRepository;
+import com.softwarehouse.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class ClientService {
@@ -20,7 +21,8 @@ public class ClientService {
 
 	@Transactional(readOnly = true)
 	public Optional<Client> findById(Long id) {
-		Optional<Client> client = clientRepository.findById(id);
+		Optional<Client> client = Optional.ofNullable(clientRepository.findById(id).orElseThrow(
+				() -> new ResourceNotFoundException("Recurso não encontrado.")));
 		return client;
 	}
 
